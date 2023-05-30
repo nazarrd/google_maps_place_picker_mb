@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 
 class AnimatedPin extends StatefulWidget {
   AnimatedPin({
-    Key? key,
+    Key key,
     this.child,
   });
 
-  final Widget? child;
+  final Widget child;
 
   @override
   _AnimatedPinState createState() => _AnimatedPinState();
@@ -14,7 +14,7 @@ class AnimatedPin extends StatefulWidget {
 
 class _AnimatedPinState extends State<AnimatedPin>
     with TickerProviderStateMixin {
-  late AnimationController _controller;
+  AnimationController _controller;
 
   @override
   void initState() {
@@ -39,12 +39,12 @@ class _AnimatedPinState extends State<AnimatedPin>
 
 class JumpingContainer extends AnimatedWidget {
   const JumpingContainer({
-    Key? key,
-    required AnimationController controller,
+    Key key,
+    @required AnimationController controller,
     this.child,
   }) : super(key: key, listenable: controller);
 
-  final Widget? child;
+  final Widget child;
 
   Animation<double> get _progress => listenable as Animation<double>;
 

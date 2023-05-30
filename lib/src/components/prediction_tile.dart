@@ -3,9 +3,9 @@ import 'package:google_maps_webservice/places.dart';
 
 class PredictionTile extends StatelessWidget {
   final Prediction prediction;
-  final ValueChanged<Prediction>? onTap;
+  final ValueChanged<Prediction> onTap;
 
-  PredictionTile({required this.prediction, this.onTap});
+  PredictionTile({@required this.prediction, this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +18,7 @@ class PredictionTile extends StatelessWidget {
       ),
       onTap: () {
         if (onTap != null) {
-          onTap!(prediction);
+          onTap(prediction);
         }
       },
     );
@@ -26,7 +26,7 @@ class PredictionTile extends StatelessWidget {
 
   List<TextSpan> _buildPredictionText(BuildContext context) {
     final List<TextSpan> result = <TextSpan>[];
-    final textColor = Theme.of(context).textTheme.bodyText2!.color;
+    final textColor = Theme.of(context).textTheme.bodyMedium.color;
 
     if (prediction.matchedSubstrings.length > 0) {
       MatchedSubstring matchedSubString = prediction.matchedSubstrings[0];
@@ -35,7 +35,7 @@ class PredictionTile extends StatelessWidget {
         result.add(
           TextSpan(
             text: prediction.description
-                ?.substring(0, matchedSubString.offset as int?),
+                ?.substring(0, matchedSubString.offset as int),
             style: TextStyle(
                 color: textColor, fontSize: 16, fontWeight: FontWeight.w300),
           ),
@@ -47,7 +47,7 @@ class PredictionTile extends StatelessWidget {
         TextSpan(
           text: prediction.description?.substring(
               matchedSubString.offset as int,
-              matchedSubString.offset + matchedSubString.length as int?),
+              matchedSubString.offset + matchedSubString.length as int),
           style: TextStyle(
               color: textColor, fontSize: 16, fontWeight: FontWeight.w500),
         ),
